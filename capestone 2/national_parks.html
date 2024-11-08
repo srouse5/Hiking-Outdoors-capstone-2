@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="../capestone 2/scripts/styles.css">
+</head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../capestone 2/scripts/styles.css"> 
+    <title> </title>
+</head>
+
+<body>
+
+    <h1>Find a National Park</h1>
+
+    <!-- Dropdowns for location and park type -->
+    <select id="location-dropdown">
+        <option value="">Select Location...</option>
+    </select>
+    <select id="park-type-dropdown">
+        <option value="">Select Park Type...</option>
+    </select>
+
+    <!-- Buttons for search, view all, and clear results -->
+    <button id="search-button">Search Parks</button>
+    <button id="view-all-button">View All Parks</button>
+    <button id="clear-results-button">Clear Results</button>
+
+    <!-- Container to display search results -->
+    <div id="results"></div>
+
+    <!-- JavaScript files for data and functionality -->
+    <script src="./data/locationData.js"></script>
+    <script src="./data/parkTypeData.js"></script>
+    <script src="./data/nationalParkData.js"></script>
+    <script src="./scripts/national_parks_table.js"></script>
+</body>
+</html>

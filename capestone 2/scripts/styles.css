@@ -1,0 +1,37 @@
+/* Ensure full height and no extra spacing */
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fixing body background and text styling */
+body {
+    background-image: url("../images/mtn\ bkdr.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: rgb(255, 255, 255);
+    display: flex;
+    /* Use flexbox to ensure full height layout */
+    flex-direction: column;
+}
+
+/* Adjust main content */
+.content {
+    flex: 1;
+    /* Take up all available space */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer positioning */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+    background-color: #333;
+}
