@@ -1,4 +1,7 @@
 // national_parks.js
+// national_parks_table.js
+// ADD THIS INSTEAD TO DISPLAY RESULTS AS A TABLE
+// CREDITS TO JALEN THE GOAT
 
 document.addEventListener("DOMContentLoaded", () => {
   // GET REFERENCES TO DOM ELEMENTS
@@ -6,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const parkTypeDropdown = document.getElementById("park-type-dropdown");
   const searchButton = document.getElementById("search-button");
   const viewAllButton = document.getElementById("view-all-button");
-  const resultsDiv = document.getElementById("results"); // reference to #results div
+  const resultsDiv = document.getElementById("results"); // REFERENCE TO #results DIV
 
   // POPULATE DROPDOWNS WITH DATA FROM ARRAYS
   locationsArray.forEach((location) => {
@@ -57,31 +60,87 @@ document.addEventListener("DOMContentLoaded", () => {
     displayResults(nationalParksArray);
   };
 
-  // DISPLAY RESULTS FUNCTION
+  // DISPLAY RESULTS FUNCTION WITH TABLE IMPLEMENTATION
   const displayResults = (parks) => {
     resultsDiv.innerHTML = ""; // CLEAR PREVIOUS RESULTS
+
     if (parks.length === 0) {
       resultsDiv.innerHTML =
         "<p>No parks found matching the selected criteria.</p>";
       return;
     }
 
-    parks.forEach((park) => {
-      const parkDiv = document.createElement("div");
-      parkDiv.classList.add("park-result");
-      parkDiv.innerHTML = `
-        <h3>${park.LocationName}</h3>
-        <p><strong>Location:</strong> ${park.City}, ${park.State}</p>
-        <p><strong>Address:</strong> ${park.Address || "N/A"}</p>
-        <p><strong>Phone:</strong> ${park.Phone || "N/A"}</p>
-        ${
-          park.Visit
-            ? `<p><a href="${park.Visit}" target="_blank">Visit Park Website</a></p>`
-            : ""
-        }
-      `;
-      resultsDiv.appendChild(parkDiv);
+    // CREATE TABLE
+    const table = document.createElement("table");
+    table.setAttribute("border", "1"); // BORDER FOR VISIBILITY
+    table.style.backgroundColor = "white"; // BACKGROUND COLOR TO WHITE
+    table.style.width = "100%"; // MAKE TABLE FULL WIDTH
+    table.style.borderCollapse = "collapse"; // COLLAPSE BORDERS
+
+    // CREATE THE TABLE HEADER ROW
+    const headerRow = document.createElement("tr");
+
+    // CREATE HEADER TITLES
+    const headers = ["Park Name", "Location", "Address", "Phone", "Website"];
+    headers.forEach((headerText) => {
+      const th = document.createElement("th");
+      th.textContent = headerText;
+      th.style.padding = "8px"; // PADDING FOR BETTER SPACING
+      th.style.backgroundColor = "#f2f2f2"; // HEADER BACKGROUND COLOR
+      th.style.textAlign = "left"; // ALIGN HEADER TEXT TO THE LEFT
+      headerRow.appendChild(th);
     });
+
+    table.appendChild(headerRow);
+
+    // CREATE A TABLE ROW FOR PARKS
+    parks.forEach((park) => {
+      const row = document.createElement("tr");
+
+      // PARK NAME
+      const nameCell = document.createElement("td");
+      nameCell.textContent = park.LocationName;
+      nameCell.style.padding = "8px"; // ADD PADDING TO CELLS
+      row.appendChild(nameCell);
+
+      // PARK LOCATION (CITY, STATE)
+      const locationCell = document.createElement("td");
+      locationCell.textContent = `${park.City}, ${park.State}`;
+      locationCell.style.padding = "8px";
+      row.appendChild(locationCell);
+
+      // ADDRESS
+      const addressCell = document.createElement("td");
+      addressCell.textContent = park.Address || "N/A";
+      addressCell.style.padding = "8px";
+      row.appendChild(addressCell);
+
+      // PHONE
+      const phoneCell = document.createElement("td");
+      phoneCell.textContent = park.Phone || "N/A";
+      phoneCell.style.padding = "8px";
+      row.appendChild(phoneCell);
+
+      // WEBSITE LINK
+      const websiteCell = document.createElement("td");
+      if (park.Visit) {
+        const link = document.createElement("a");
+        link.href = park.Visit;
+        link.target = "_blank";
+        link.textContent = "Visit Park Website";
+        websiteCell.appendChild(link);
+      } else {
+        websiteCell.textContent = "N/A";
+      }
+      websiteCell.style.padding = "8px";
+      row.appendChild(websiteCell);
+
+      // ADD THE ROW TO THE TABLE
+      table.appendChild(row);
+    });
+
+    // COMPLETE TABLE TO RESULTS DIV
+    resultsDiv.appendChild(table);
   };
 
   // CLEAR RESULTS FUNCTION

@@ -9,11 +9,12 @@ html {
 /* Fixing body background and text styling */
 body {
     background-image: url("../images/mtn\ bkdr.jpg");
-    background-size: cover;
+    height: fit-content;
+    background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
     font-family: Arial, sans-serif;
-    color: rgb(255, 255, 255);
+    color: rgb(170, 43, 5);
     display: flex;
     /* Use flexbox to ensure full height layout */
     flex-direction: column;

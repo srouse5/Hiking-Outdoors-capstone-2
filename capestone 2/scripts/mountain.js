@@ -1,3 +1,4 @@
+
 // Function that can "fetch" the sunrise/sunset times
 async function getSunsetForMountain(lat, lng) {
   let response = await fetch(
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <td style="padding: 8px;">
                 ${
                   mountain.img
-                    ? `<img src="../images/${mountain.img}" alt="${mountain.name}" style="max-width: 100%; height: auto;" />`
+                    ? `<img src="../images/${mountain.img}" alt="${mountain.name}" style="max-width: 500px; height: auto;" />`
                     : "N/A"
                 }
               </td>
